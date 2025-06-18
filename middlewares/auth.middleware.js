@@ -1,8 +1,8 @@
 import {asyncWrapper} from '../utils/asyncWrapper.js';
 import {ApiError} from '../utils/ApiError.js';
 import jwt from 'jsonwebtoken';
-import User from '../models/User.js';
-export const veryfyJwt = asyncWrapper(async (req, res, next) => {
+import { User } from '../models/user.model.js';
+export const verifyJwt = asyncWrapper(async (req, res, next) => {
    try {
      const token = req.cookies.accessToken || req.header("Authorization")?.replace("Bearer ", "")
      if (!token) {

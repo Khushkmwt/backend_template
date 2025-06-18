@@ -4,4 +4,4 @@ const asyncWrapper = (requestHandler)  => {
     }
 }
 
-export default asyncWrapper
+export  {asyncWrapper}

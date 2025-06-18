@@ -27,15 +27,17 @@ A clean and modular Node.js backend boilerplate using **Express**, **MongoDB**, 
 │   └── index.js            # MongoDB connection logic
 ├── middlewares/
 │   ├── auth.middleware.js   # JWT protection
-│   └── error.middleware.js  # Global error handling
+│   ├── error.middleware.js  # Global error handling
+|   └── multer.middleware.js # Multer file handling 
 ├── models/
-│   └── User.js             # Mongoose schema
+│   └── user.model.js        # Mongoose schema
 ├── routes/
 │   └── auth.routes.js       # Auth routes
+├── uploads/                 # multer file destination
 ├── utils/
-│   ├── asyncWrapper.js     # Try-catch wrapper
+│   ├── asyncWrapper.js     # async wrapper
 │   ├── ApiError.js         # Custom error class
-│   └── sendResponse.js     # Standard response format
+│   └── Response.js         # Standard response format
 ├── app.js                  # Main app setup
 ├── index.js                # Entry point
 ├── .env
@@ -53,7 +55,7 @@ A clean and modular Node.js backend boilerplate using **Express**, **MongoDB**, 
 - ✅ Global error handling and async wrapper  
 - ✅ Standardized API response format  
 - ✅ Modular and scalable project structure  
-
+- ✅ Multer based file handling
 ---
 
 ## 🚀 Getting Started
@@ -104,11 +106,11 @@ npm run dev
 
 ## 📌 API Endpoints
 
-| Method | Endpoint        | Description         | Auth Required |
-|--------|------------------|---------------------|----------------|
-| POST   | `/api/register` | Register user       | ❌             |
-| POST   | `/api/login`    | Login user          | ❌             |
-| GET    | `/api/profile`  | Get current user    | ✅             |
+| Method | Endpoint                 | Description         | Auth Required  |
+|--------|--------------------------|---------------------|----------------|
+| POST   | `/api/v1/users/register` | Register user       | ❌             |
+| POST   | `/api/v1/users/login`    | Login user          | ❌             |
+| GET    | `/api/v1/users/profile`  | Get current user    | ✅             |
 
 ---
 

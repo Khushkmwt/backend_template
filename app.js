@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-
+import { errorHandler } from './middlewares/error.middleware.js';
 
 
 const app = express();
@@ -23,4 +23,19 @@ import userRoutes from './routes/user.routes.js';
 //using the imported routes
 app.use('/api/v1/users', userRoutes);
 
+
+// Catch undefined routes
+app.use((req, res, next) => {
+  res.status(404).json({
+    success: false,
+    message: `Route ${req.originalUrl} not found`,
+    data: null,
+    statusCode: 404,
+  });
+});
+
+// Global error handler
+app.use(errorHandler);
+
+// Export the app
 export default app;

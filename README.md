@@ -20,19 +20,18 @@ A clean and modular Node.js backend boilerplate using **Express**, **MongoDB**, 
 
 ```
 .
-├── config/
-│   └── db.js               # Optional extra config (if needed)
+
 ├── controllers/
-│   └── authController.js   # Register/Login logic
+│   └── auth.controllers.js   # Register/Login logic
 ├── db/
 │   └── index.js            # MongoDB connection logic
 ├── middlewares/
-│   ├── authMiddleware.js   # JWT protection
-│   └── errorMiddleware.js  # Global error handling
+│   ├── auth.middleware.js   # JWT protection
+│   └── error.middleware.js  # Global error handling
 ├── models/
 │   └── User.js             # Mongoose schema
 ├── routes/
-│   └── authRoutes.js       # Auth routes
+│   └── auth.routes.js       # Auth routes
 ├── utils/
 │   ├── asyncWrapper.js     # Try-catch wrapper
 │   ├── ApiError.js         # Custom error class
@@ -62,8 +61,8 @@ A clean and modular Node.js backend boilerplate using **Express**, **MongoDB**, 
 ### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/your-username/express-backend-template.git
-cd express-backend-template
+git clone https://github.com/khushkmwt/backend_template.git
+cd backend_template
 ```
 
 ### 2. Install Dependencies
@@ -77,11 +76,13 @@ npm install
 Create a `.env` file in the root:
 
 ```env
-PORT=5000
-MONGO_URI=your_mongo_connection_uri
-JWT_SECRET=your_super_secret_key
-JWT_EXPIRES_IN=3d
-COOKIE_NAME=token
+MONGO_URI = YOUR_MONGO_URI
+PORT = 9000
+CORS_ORIGIN = *
+ACCESS_TOKEN_SECRET = 
+ACCESS_TOKEN_EXPIRY = 1d
+REFRESS_TOKEN_SECRET = 
+REFRESH_TOKEN_EXPIRY = 10d
 ```
 
 ### 4. Start the Server
@@ -125,28 +126,18 @@ MongoDB is initialized in `db/index.js` and imported in `index.js` to ensure it'
 
 ```js
 // db/index.js
-const mongoose = require('mongoose');
-
-const connectDB = async () => {
-  await mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-  console.log('MongoDB connected');
-};
-
-module.exports = connectDB;
+import mongoose from "mongoose";
+const dbname = "YOUR_DBNAME";
+export const connectDb = async () =>{
+  try {
+    const connectionInstance = await mongoose.connect(process.env.MONGO_URI,{dbName:dbname})
+    console.log(`\n MONGODB CONNECTED !! DB HOST: ${connectionInstance.connection.host}`)
+  } catch (error) {
+    console.error("db connection error: ",error);
+    process.exit(1);
+  }
+}
 ```
-
----
-
-## 🧪 Future Add-ons
-
-- [ ] Refresh tokens  
-- [ ] Role-based access  
-- [ ] Rate limiting & CORS config  
-- [ ] Swagger/OpenAPI docs  
-
 ---
 
 ## 🤝 Contributing
@@ -158,6 +149,6 @@ Pull requests welcome! If you spot a bug or have an idea, feel free to open an i
 ## 📬 Contact
 
 Questions, feedback, or want to collab?  
-Reach out at `youremail@example.com`
+Reach out at `dilkhushkumawat33@gmail.com`
 
 ---

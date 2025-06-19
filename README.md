@@ -26,8 +26,7 @@ A clean and modular Node.js backend boilerplate using **Express**, **MongoDB**, 
 ├── db/
 │   └── index.js            # MongoDB connection logic
 ├── middlewares/
-│   ├── auth.middleware.js   # JWT protection
-│   ├── error.middleware.js  # Global error handling
+│   ├── auth.middleware.js   # JWT protection   
 |   └── multer.middleware.js # Multer file handling 
 ├── models/
 │   └── user.model.js        # Mongoose schema
@@ -36,6 +35,7 @@ A clean and modular Node.js backend boilerplate using **Express**, **MongoDB**, 
 ├── uploads/                 # multer file destination
 ├── utils/
 │   ├── asyncWrapper.js     # async wrapper
+|   ├── errorHandler.js     # Global error handling
 │   ├── ApiError.js         # Custom error class
 │   └── Response.js         # Standard response format
 ├── app.js                  # Main app setup
